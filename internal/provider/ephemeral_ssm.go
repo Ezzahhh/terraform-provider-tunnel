@@ -100,6 +100,7 @@ func (d *SSMEphemeral) Open(ctx context.Context, req ephemeral.OpenRequest, resp
 	data.LocalPort = types.Int64Value(int64(localPort))
 
 	cmd, err := ssm.ForkRemoteTunnel(ctx, ssm.TunnelConfig{
+		SSMProfile:  data.SSMProfile.ValueString(),
 		SSMRegion:   data.SSMRegion.ValueString(),
 		SSMInstance: data.SSMInstance.ValueString(),
 		TargetHost:  data.TargetHost.ValueString(),
